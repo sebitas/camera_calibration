@@ -42,7 +42,8 @@ int main(int argc, const char * argv[])
     }
     int framesPerSecond = 20;
     float num_frames = 15;
-    float fps;
+    double fps = 0, presicion = 0, presicionT;
+    int counter = 0;
     namedWindow("Webcam", CV_WINDOW_AUTOSIZE);
     
     clock_t start, end;
@@ -85,6 +86,11 @@ int main(int argc, const char * argv[])
         fps  = num_frames / seconds;
         cout << "Estimated frames per second : " << fps << endl;
         start = end = 0;
+        presicion += foundpoints.size() / (20.0);
+        presicionT = presicion / counter;
+        counter++;
+        cout << "Relative Presicion : " << presicion <<endl;
+        cout << "Total Presicion : " << presicionT <<endl;
     }
     return 0;
 }
